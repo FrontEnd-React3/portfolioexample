@@ -1,0 +1,97 @@
+.phoneIcon,
+.cvIcon,
+.mailIcon {
+  height: 5vw;
+  width: 5vw;
+  display: flex;
+  justify-content: center;
+}
+.phoneIcon,
+.phoneIcon::before,
+.phoneIcon::after,
+.mailIcon,
+.mailIcon::before,
+.mailIcon::after {
+  box-sizing: border-box;
+  font-size: 1.5vw;
+}
+
+.phoneIcon::before,
+.phoneIcon::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: gold;
+  --tooltip-border: solid 3px rgb(203, 173, 0);
+  --tooltip-border-style: outset;
+  --translate-y: -100%;
+
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0))
+    scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+.mailIcon::before,
+.mailIcon::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: gold;
+  --tooltip-border: solid 3px rgb(203, 173, 0);
+  --tooltip-border-style: outset;
+  --translate-y: -100%;
+
+  position: absolute;
+  top: -0.25rem;
+  left: 0%;
+  transform: translateX(-3vw) translateY(var(--translate-y, 0))
+    scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+
+.phoneIcon::before,
+.mailIcon::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+
+  content: attr(data-tooltip);
+  color: black;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  text-align: center;
+  width: max-content;
+  max-width: 100%;
+  background: var(--tooltip-color);
+  border: var(--tooltip-border);
+  border-style: var(--tooltip-border-style);
+}
+
+.mailIcon:hover::before,
+.mailIcon:hover::after,
+.phoneIcon:hover::before,
+.phoneIcon:hover::after {
+  --scale: 1;
+}
+
+.phoneIcon::after {
+  content: "";
+  --translate-y: calc(-1 * var(--arrow-size));
+  border: var(--arrow-size) solid transparent;
+  border-top-color: var(--tooltip-color);
+  transform-origin: top center;
+  margin-top: -2px;
+  position: absolute;
+}
+
+.mailIcon::after {
+  content: "";
+  --translate-y: calc(-1 * var(--arrow-size));
+  border: var(--arrow-size) solid transparent;
+  border-top-color: var(--tooltip-color);
+  transform-origin: top center;
+  margin-top: -2px;
+  margin-left: 5vw;
+
+  position: absolute;
+}
