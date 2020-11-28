@@ -6,6 +6,9 @@
   display: flex;
   justify-content: center;
 }
+.cvIcon,
+.cvIcon::before,
+.cvIcon::after,
 .phoneIcon,
 .phoneIcon::before,
 .phoneIcon::after,
@@ -16,15 +19,18 @@
   font-size: 1.5vw;
 }
 
+.cvIcon::before,
+.cvIcon::after,
 .phoneIcon::before,
-.phoneIcon::after {
+.phoneIcon::after,
+.mailIcon::before,
+.mailIcon::after {
   --scale: 0;
   --arrow-size: 10px;
   --tooltip-color: gold;
   --tooltip-border: solid 3px rgb(203, 173, 0);
   --tooltip-border-style: outset;
   --translate-y: -100%;
-
   position: absolute;
   top: -0.25rem;
   left: 50%;
@@ -35,26 +41,28 @@
 }
 .mailIcon::before,
 .mailIcon::after {
-  --scale: 0;
-  --arrow-size: 10px;
-  --tooltip-color: gold;
-  --tooltip-border: solid 3px rgb(203, 173, 0);
-  --tooltip-border-style: outset;
-  --translate-y: -100%;
-
-  position: absolute;
-  top: -0.25rem;
   left: 0%;
   transform: translateX(-3vw) translateY(var(--translate-y, 0))
     scale(var(--scale));
-  transition: 150ms transform;
-  transform-origin: bottom center;
 }
 
 .phoneIcon::before,
+.phoneIcon::after {
+  transform: translateX(-50%) translateY(var(--translate-y, 0))
+    scale(var(--scale));
+}
+
+.cvIcon::before,
+.cvIcon::after {
+  transform: translateX(5vw) translateY(var(--translate-y, 0))
+    scale(var(--scale));
+}
+
+
+.cvIcon::before,
+.phoneIcon::before,
 .mailIcon::before {
   --translate-y: calc(-100% - var(--arrow-size));
-
   content: attr(data-tooltip);
   color: black;
   padding: 0.5rem;
@@ -69,12 +77,16 @@
 
 .mailIcon:hover::before,
 .mailIcon:hover::after,
+.cvIcon:hover::before,
+.cvIcon:hover::after,
 .phoneIcon:hover::before,
 .phoneIcon:hover::after {
   --scale: 1;
 }
 
-.phoneIcon::after {
+.phoneIcon::after,
+.mailIcon::after,
+.cvIcon::after {
   content: "";
   --translate-y: calc(-1 * var(--arrow-size));
   border: var(--arrow-size) solid transparent;
@@ -83,15 +95,10 @@
   margin-top: -2px;
   position: absolute;
 }
-
+/* position bottom triangle */
 .mailIcon::after {
-  content: "";
-  --translate-y: calc(-1 * var(--arrow-size));
-  border: var(--arrow-size) solid transparent;
-  border-top-color: var(--tooltip-color);
-  transform-origin: top center;
-  margin-top: -2px;
   margin-left: 5vw;
-
-  position: absolute;
+}
+.cvIcon::after {
+  margin-left: calc(-6px + 3.9vw);
 }
